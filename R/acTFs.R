@@ -39,7 +39,7 @@ GETacTFS <- function(DEGup,DEGdown,totalgenenum,pcutoff) {
     c=length(targetAC)+length(targetRE)-a
     d=totalgenenum-length(DEGup)-length(DEGdown)-c
     fish<-fisher.test(matrix(c(a,c,b,d),nrow=2))
-    p<-fish$p.value
+    p<-format(fish$p.value,scientific=F)
     format(p,scientific=F)
     outab1<-cbind(i,p)
     outab<-rbind(outab,outab1)
