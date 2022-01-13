@@ -15,7 +15,7 @@ library(acTFs)
 ####  @param DEGup A vector of the up-regulated DEG names(official symbol)
 ##### @param DEGdown A vector of the down-regulated DEG names(official symbol)
 ##### @param totalgenenum The total gene numbers used in DEG analysis
-##### @param pcutoff The cutoff of pvalue to define activated TFs
+##### @param FDRcutoff The cutoff of FDR to define activated TFs
 ##### @return allTFs: all the TFs and pvalues
 ##### @return sigTFS: significanly activated TFs and pvalues
 ##### @return sigTFsDEGnet: relations between the significanly activated TFs and their target DEGs (activation or repression).This list can be used for Cytoscape visualization
@@ -26,10 +26,10 @@ DEGup=read.table("up.txt",sep="\t",header=T,check.names=F)
 DEGup=DEGup[,1]
 DEGdown=read.table("down.txt",sep="\t",header=T,check.names=F)
 DEGdown=DEGdown[,1]
-result=GETacTFS(DEGup,DEGdown,totalgenenum=22451,pcutoff=0.05)
+result=GETacTFS(DEGup,DEGdown,totalgenenum=20250,FDRcutoff=0.05)
 head(result$allTFs)
 head(result$sigTFS)
 head(result$sigTFsDEGnet)
 ```
 ##### Cite:
-##### doi:10.1016/j.radonc.2021.03.017
+##### https://github.com/liguangqimed/acTFs
