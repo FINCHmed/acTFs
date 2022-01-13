@@ -1,13 +1,13 @@
 #' activated Transcription Factors
 #' @author liguangqimed
-#' @param DEGup The up-regulated DEG names(official symbol) provided as a list
-#' @param DEGdown The down-regulated DEG names(official symbol) provided as a list
+#' @param DEGup A vector of the up-regulated DEG names(official symbol)
+#' @param DEGdown A vector of the down-regulated DEG names(official symbol)
 #' @param totalgenenum The total gene numbers used in DEG analysis
-#' @param pcutoff the cutoff of pvalue to define activated TFs
+#' @param pcutoff The cutoff of pvalue to define activated TFs
 #'
 #' @return allTFs: all the TFs and pvalues
 #' @return sigTFS: significanly activated TFs and pvalues
-#' @return sigTFsDEGnet: relations between the significanly activated TFs and their target DEGs (activation or repression).This relation list can be used for Cytoscape for visualization
+#' @return sigTFsDEGnet: relations between the significanly activated TFs and their target DEGs (activation or repression).This list can be used for Cytoscape visualization
 #' @export
 #'
 #' @examples
