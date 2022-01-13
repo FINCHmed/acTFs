@@ -20,14 +20,21 @@ library(acTFs)
 ### examples
 ##### input from txt (only need gene symbol names in one column)
 ```
+# to get the significanly activated TFs in the treated group compared with the control group:
 DEGup=read.table("up.txt",sep="\t",header=T,check.names=F)
 DEGup=DEGup[,1]
 DEGdown=read.table("down.txt",sep="\t",header=T,check.names=F)
 DEGdown=DEGdown[,1]
-result=GETacTFS(DEGup,DEGdown,totalgenenum=20250,FDRcutoff=0.05)
+result=GETacTFS(DEGup=DEGup,DEGdown=DEGdown,totalgenenum=20250,FDRcutoff=0.05)
 head(result$allTFs)
 head(result$sigTFS)
 head(result$sigTFsDEGnet)
+# To get the inactivated TFs in the treated group, just swap the contents of DEGup and DEGdown and run GETacTFS again.
+DEGup=read.table("up.txt",sep="\t",header=T,check.names=F)
+DEGup=DEGup[,1]
+DEGdown=read.table("down.txt",sep="\t",header=T,check.names=F)
+DEGdown=DEGdown[,1]
+result=GETacTFS(DEGup=DEGdown,DEGdown=DEGup,totalgenenum=20250,FDRcutoff=0.05)
 ```
 ##### Cite:
 ##### https://github.com/liguangqimed/acTFs
