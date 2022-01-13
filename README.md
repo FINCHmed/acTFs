@@ -37,4 +37,4 @@ DEGdown=DEGdown[,1]
 result=GETacTFS(DEGup=DEGdown,DEGdown=DEGup,totalgenenum=20250,FDRcutoff=0.05)
 ```
 ##### Cite:
-##### doi:10.1016/j.radonc.2021.03.017
+##### https://github.com/liguangqimed/acTFs
