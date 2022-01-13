@@ -4,7 +4,7 @@
 #' @param DEGup A vector of the up-regulated DEG names(official symbol)
 #' @param DEGdown A vector of the down-regulated DEG names(official symbol)
 #' @param totalgenenum The total gene numbers used in DEG analysis
-#' @param pcutoff The cutoff of pvalue to define activated TFs
+#' @param FDRcutoff The cutoff of FDR to define activated TFs
 #'
 #' @return allTFs: all the TFs and pvalues
 #' @return sigTFS: significanly activated TFs and pvalues
@@ -14,7 +14,7 @@
 #' @examples
 #' DEGup=c("EFCAB6","MAP2K6","GNPDA2")
 #' DEGdown=c("LURAP1L","NPAP1","FGFR1")
-#' result=GETacTFS(DEGup,DEGdown,totalgenenum=20000,pcutoff=0.05)
+#' result=GETacTFS(DEGup,DEGdown,totalgenenum=20250,FDRcutoff=0.05)
 #' head(result$allTFs)
 #' head(result$sigTFS)
 #' head(result$sigTFsDEGnet)
@@ -23,11 +23,11 @@
 #' DEGup=DEGup[,1]
 #' DEGdown=read.table("down.txt",sep="\t",header=T,check.names=F)
 #' DEGdown=DEGdown[,1]
-#' result=GETacTFS(DEGup,DEGdown,totalgenenum=20000,pcutoff=0.05)
+#' result=GETacTFS(DEGup,DEGdown,totalgenenum=20250,FDRcutoff=0.05)
 #' head(result$allTFs)
 #' head(result$sigTFS)
 #' head(result$sigTFsDEGnet)
-GETacTFS <- function(DEGup,DEGdown,totalgenenum,pcutoff) {
+GETacTFS <- function(DEGup,DEGdown,totalgenenum,FDRcutoff) {
   outab<-NULL
   for (i in TFlist) {
     TARGETAC<-Activation[Activation$TF==i,]
@@ -47,7 +47,9 @@ GETacTFS <- function(DEGup,DEGdown,totalgenenum,pcutoff) {
   }
   allTFs<-data.frame(outab)
   colnames(allTFs)=c("TF","p")
-  sigTFS<-allTFs[allTFs$p<pcutoff,]
+  FDR=format(p.adjust(allTFs$p,method="BH",n = length(allTFs$p)),scientific=F)
+  allTFs<-cbind(allTFs,FDR)
+  sigTFS<-allTFs[allTFs$FDR<FDRcutoff,]
   tfs<-sigTFS$TF
   out1<-NULL
   out2<-NULL
