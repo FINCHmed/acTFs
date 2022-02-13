@@ -4,7 +4,7 @@
 # install devtools if necessary
 install.packages('devtools')
 # install the acTFs package
-devtools::install_github("liguangqimed/acTFs")    #or using BiocManager::install("liguangqimed/acTFs")
+devtools::install_github("liguangqimed/acTFs")    
 # load
 library(acTFs)
 ```
