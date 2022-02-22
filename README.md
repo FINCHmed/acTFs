@@ -4,7 +4,7 @@
 # install devtools if necessary
 install.packages('devtools')
 # install the acTFs package
-devtools::install_github("liguangqimed/acTFs")    
+devtools::install_github("FINCHmed/acTFs")    
 # load
 library(acTFs)
 ```
